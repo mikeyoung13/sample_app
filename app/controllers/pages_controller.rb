@@ -1,7 +1,5 @@
 class PagesController < ApplicationController
   
-  #render_views
-  
   def home
   end
 
