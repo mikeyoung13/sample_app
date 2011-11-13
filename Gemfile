@@ -19,6 +19,7 @@ group :test do
   gem 'autotest-rails-pure', '4.1.2'
   gem 'autotest-fsevent', '0.2.4'
   gem 'autotest-growl', '0.2.16'
+  gem 'spork', '0.9.0.rc8'
 end
 
 # Use unicorn as the web server
