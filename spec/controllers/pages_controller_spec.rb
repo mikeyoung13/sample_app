@@ -19,6 +19,8 @@ describe PagesController do
                         :content => @base_title + " | Home")
     end
     
+    # use http://rubular.com/ to test regex
+    # see video for example of how to use
     it "should have a non-blank body" do
       get 'home'
       response.body.should_not =~ /<body>\s*<\/body>/
