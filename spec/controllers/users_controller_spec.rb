@@ -121,6 +121,15 @@ describe UsersController do
       get :new
       response.should have_selector("input[name='user[password_confirmation]'][type='password']")
     end
+    
+    describe "for signed-in users" do
+      it "should redirect to root" do
+        user = Factory(:user, :email => "user@example.net")
+        test_sign_in(user)
+        get :new, :id => @user
+        response.should redirect_to(root_path)
+      end
+    end
 
   end
   
@@ -177,6 +186,17 @@ describe UsersController do
       end
 
     end # success
+    
+    describe "for signed-in users" do
+      it "should redirect to root" do
+        user = Factory(:user, :email => "user@example.net")
+        test_sign_in(user)
+        @attr = { :name => "New User", :email => "user@example.com", :password => "foobar", :password_confirmation => "foobar" }
+        post :create, :user => @attr
+        response.should redirect_to(root_path)
+      end
+    end
+    
   end 
   
   describe "GET 'edit'" do
