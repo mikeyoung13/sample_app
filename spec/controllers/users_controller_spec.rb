@@ -56,6 +56,29 @@ describe UsersController do
       end
       
     end
+    
+    # excercise #4 (section 10.6)
+    describe "for admin user" do
+      it "should have a DELETE link" do
+        admin = Factory(:user, :email => "admin@example.com", :admin => true)
+        non_admin = Factory(:user, :email => "non-admin@example.com", :admin => false)
+        test_sign_in(admin)
+        get :index
+        response.should have_selector("a", :content => "delete")
+      end
+    end
+    
+    # excercise #4 (section 10.6)
+    describe "for non-admin user" do
+      it "should NOT have a DELETE link" do
+        admin = Factory(:user, :email => "admin@example.com", :admin => true)
+        non_admin = Factory(:user, :email => "non-admin@example.com", :admin => false)
+        test_sign_in(non_admin)
+        get :index
+        response.should_not have_selector("a", :content => "delete")
+      end
+    end
+    
   end
   
   describe "GET 'show'" do
